@@ -26,29 +26,30 @@ class Handler implements URLHandler {
         // }
 
         if (url.getPath().equals("/")) {
-            return System.out.println(listOfStrings);
+            return listOfStrings.toString();
         } else if (url.getPath().contains("/add")) {
             String [] parameters = url.getQuery().split("=");
             if (parameters[0].equals("s")) {
                 listOfStrings.add(parameters[1]);
-                return System.out.println(listOfStrings);
+                return listOfStrings.toString();
             }
         } else if (url.getPath().contains("/search")) {
             ArrayList<String> listOfSearch = new ArrayList<String>();
-            String [] parametersSerach = url.getQuery().split("=");
-            if (parameters[0].equals("s")) {
+            String [] parametersSearch = url.getQuery().split("=");
+            if (parametersSearch[0].equals("s")) {
                 for (int i = 0; i < listOfStrings.size(); i++) {
-                    if (listOfStrings[i].contains(parameters[1])) {
-                        listOfSearch.add(listOfStrings[i]);
+                    if (listOfStrings.get(i).contains(parametersSearch[1])) {
+                        listOfSearch.add(listOfStrings.get(i));
                     }
                 }
-                return System.out.println(listOfSearch);
+                return listOfSearch.toString();
             }
         }
+        return "";
     }
 }
 
-class SearchEngine.java {
+class SearchEngine {
     public static void main(String[] args) throws IOException {
         if(args.length == 0){
             System.out.println("Missing port number! Try any number between 1024 to 49151");
